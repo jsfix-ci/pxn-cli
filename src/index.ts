@@ -1,1 +1,2 @@
-import {ImageProcessor} from './ImageProcessor';
+export * from './AnimationProcessor';
+export * from './ImageProcessor';

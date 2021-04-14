@@ -2,7 +2,7 @@ import {loadImage, createCanvas, Canvas} from 'canvas';
 import fs from 'fs';
 import p from 'path';
 import {IPixelOptions, IRescaleImageOptions} from './types';
-import {validatePaths} from './utils';
+import {validateImagePath} from '../utils';
 
 /**
  * Class which is responsible for tasks connected with image files.
@@ -28,7 +28,8 @@ export class ImageProcessor {
    */
   static async rescale(options: IRescaleImageOptions) {
     const {divisor, outputPath, path} = options;
-    validatePaths(path, outputPath);
+    validateImagePath(path, 'input');
+    validateImagePath(outputPath, 'output');
     const image = await loadImage(
       p.isAbsolute(path)
         ? path
@@ -71,7 +72,8 @@ export class ImageProcessor {
    */
   static async pixel(options: IPixelOptions) {
     const {precision, outputPath, path} = options;
-    validatePaths(path, outputPath);
+    validateImagePath(path, 'input');
+    validateImagePath(outputPath, 'output');
     const image = await loadImage(path);
     const width = image.width;
     const height = image.height;

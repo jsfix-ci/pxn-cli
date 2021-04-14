@@ -1,8 +1,10 @@
+import {TOutputImagePath, TSourceImagePath} from '../types';
+
 export interface IRescaleImageOptions {
   /**
-   * Path to image file. Acceptable extensions are "png", "jpg" and "jpeg".
+   * Path to source image file.
    */
-  path: string;
+  path: TSourceImagePath;
   /**
    * How many pixels in original image represents 1 pixel in rendered image.
    * So, if original image has resolution of 120x60 and divisor is 3, it
@@ -13,24 +15,23 @@ export interface IRescaleImageOptions {
    */
   divisor: number;
   /**
-   * Path to output file. Acceptable extensions are "png" or "jpeg".
+   * Path to output file.
    */
-  outputPath: string;
+  outputPath: TOutputImagePath;
 }
 
 export interface IPixelOptions {
   /**
-   * Path to image file. Acceptable extensions are "png", "jpg", "jpeg" and
-   * "svg".
+   * Path to image file.
    */
-  path: string;
+  path: TSourceImagePath;
   /**
    * How many pixels should be taken to create new pixel. Pixels are taken
    * with square which square is equal to precision ** 2.
    */
   precision: number;
   /**
-   * Path to output file. Acceptable extensions are "png" or "jpeg".
+   * Path to output file.
    */
-  outputPath: string;
+  outputPath: TOutputImagePath;
 }
