@@ -12,7 +12,7 @@
     "dist/**/*"
   ],
   "bin": {
-    "pxn-cli": "./dist/cli.js"
+    "pxn-cli": "./dist/index.js"
   },
   "scripts": {
     "build": "gulp",
