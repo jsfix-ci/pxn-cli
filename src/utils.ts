@@ -1,29 +1,36 @@
+import {InvalidOptionArgumentError} from 'commander';
 import p from 'path';
 
 /**
- * Validates image path;
- * @param path
- * @param type
+ * Parses value as positive float number.
+ * @param value
  */
-export function validateImagePath(path: string, type: 'input' | 'output') {
-  if (!p.isAbsolute(path)) {
-    throw new Error('Path to image should be absolute');
-  }
-  const {ext} = p.parse(path);
-  const extensions = type === 'input'
-    ? ['.png', '.jpeg', '.jpg']
-    : ['.png', '.jpeg'];
+export function parsePositiveFloat(value: string): number {
+  const parsedValue = parseFloat(value);
 
-  if (!extensions.includes(ext)) {
-    throw new Error(`Unsupported ${type} extension: ${ext}`);
+  if (isNaN(parsedValue) || parsedValue < 0) {
+    throw new InvalidOptionArgumentError('Should be positive float number');
   }
+  return parsedValue;
 }
 
-export function getAbsolutePath(
-  path: string,
-  cwd = process.cwd()
-): string {
-  return p.isAbsolute(path)
-    ? path
-    : p.resolve(cwd, path);
+/**
+ * Parses value as positive whole number.
+ * @param value
+ */
+export function parsePositiveInt(value: string): number {
+  const parsedValue = parseInt(value, 10);
+
+  if (isNaN(parsedValue) || parsedValue < 0) {
+    throw new InvalidOptionArgumentError('Should be positive whole number');
+  }
+  return parsedValue;
+}
+
+/**
+ * Converts path to absolute.
+ * @param path
+ */
+export function toAbsolutePath(path: string): string {
+  return p.isAbsolute(path) ? path : p.resolve(process.cwd(), path);
 }
