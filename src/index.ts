@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import packageJson from '../package.json';
 import {Command, InvalidOptionArgumentError} from 'commander';
 import {ImagesProcessor} from 'pxn-core/dist/node';
