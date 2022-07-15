@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import packageJson from '../package.json';
-import {Command, InvalidOptionArgumentError} from 'commander';
+import {Command, InvalidArgumentError} from 'commander';
 import {ImagesProcessor} from 'pxn-core/dist/node';
 import {parsePositiveFloat, parsePositiveInt, toAbsolutePath} from './utils';
 
@@ -98,7 +98,7 @@ program
       .reduce<number>((acc, param) => param === undefined ? acc : acc + 1, 0);
 
     if (nonUndefinedParamsCount > 1) {
-      throw new InvalidOptionArgumentError(
+      throw new InvalidArgumentError(
         'It is not allowed several resize parameters at the same time',
       );
     }

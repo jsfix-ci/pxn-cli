@@ -1,4 +1,4 @@
-import {InvalidOptionArgumentError} from 'commander';
+import {InvalidArgumentError} from 'commander';
 import p from 'path';
 
 /**
@@ -9,7 +9,7 @@ export function parsePositiveFloat(value: string): number {
   const parsedValue = parseFloat(value);
 
   if (isNaN(parsedValue) || parsedValue < 0) {
-    throw new InvalidOptionArgumentError('Should be positive float number');
+    throw new InvalidArgumentError('Should be positive float number');
   }
   return parsedValue;
 }
@@ -22,7 +22,7 @@ export function parsePositiveInt(value: string): number {
   const parsedValue = parseInt(value, 10);
 
   if (isNaN(parsedValue) || parsedValue < 0) {
-    throw new InvalidOptionArgumentError('Should be positive whole number');
+    throw new InvalidArgumentError('Should be positive whole number');
   }
   return parsedValue;
 }
